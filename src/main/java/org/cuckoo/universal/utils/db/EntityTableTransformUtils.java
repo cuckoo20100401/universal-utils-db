@@ -1,6 +1,6 @@
 package org.cuckoo.universal.utils.db;
 
-public class StringUtils {
+public class EntityTableTransformUtils {
 
 	public static String fromEntityNameToTableName(String entityName) {
 		

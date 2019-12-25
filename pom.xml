@@ -15,6 +15,12 @@
   </properties>
 
   <dependencies>
+  	<!-- org.cuckoo -->
+	<dependency>
+		<groupId>org.cuckoo</groupId>
+		<artifactId>universal-utils</artifactId>
+		<version>1.0.0</version>
+	</dependency>
   </dependencies>
   
   <build>

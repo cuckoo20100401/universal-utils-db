@@ -1,56 +1,31 @@
 package org.cuckoo.universal.utils.db;
 
+import org.cuckoo.universal.utils.StringUtils;
+
 public class EntityTableTransformUtils {
+	
+	public static String fromTableNameToEntityName(String tableName) {
+		return StringUtils.fromKebabCaseToPascalCase(tableName);
+	}
+	
+	public static String fromTableColumnNameToEntityPropertyName(String tableColumnName) {
+		String result = StringUtils.fromKebabCaseToPascalCase(tableColumnName);
+		return StringUtils.makeFirstCharToLowerCase(result);
+	}
 
 	public static String fromEntityNameToTableName(String entityName) {
-		
-		StringBuilder tableName = new StringBuilder();
-		
-		char[] chars = entityName.toCharArray();
-		for (int i = 0; i < chars.length; i++) {
-			if (i == 0) {
-				tableName.append(String.valueOf(chars[i]).toLowerCase());
-			} else if (Character.isUpperCase(chars[i])) {
-				tableName.append("_");
-				tableName.append(String.valueOf(chars[i]).toLowerCase());
-			} else {
-				tableName.append(String.valueOf(chars[i]));
-			}
-		}
-		return tableName.toString();
+		return StringUtils.fromPascalCaseToKebabCase(entityName);
 	}
 	
 	public static String fromEntityPropertyNameToTableColumnName(String entityPropertyName) {
-		return fromEntityNameToTableName(entityPropertyName);
+		return StringUtils.fromPascalCaseToKebabCase(entityPropertyName);
 	}
 	
 	public static String fromEntityPropertyNameToGetMethodName(String entityPropertyName) {
-		
-		StringBuilder methodName = new StringBuilder("get");
-		
-		char[] chars = entityPropertyName.toCharArray();
-		for (int i = 0; i < chars.length; i++) {
-			if (i == 0) {
-				methodName.append(String.valueOf(chars[i]).toUpperCase());
-			} else {
-				methodName.append(String.valueOf(chars[i]));
-			}
-		}
-		return methodName.toString();
+		return "get" + StringUtils.makeFirstCharToUpperCase(entityPropertyName);
 	}
 	
 	public static String fromEntityPropertyNameToSetMethodName(String entityPropertyName) {
-		
-		StringBuilder methodName = new StringBuilder("set");
-		
-		char[] chars = entityPropertyName.toCharArray();
-		for (int i = 0; i < chars.length; i++) {
-			if (i == 0) {
-				methodName.append(String.valueOf(chars[i]).toUpperCase());
-			} else {
-				methodName.append(String.valueOf(chars[i]));
-			}
-		}
-		return methodName.toString();
+		return "set" + StringUtils.makeFirstCharToUpperCase(entityPropertyName);
 	}
 }
